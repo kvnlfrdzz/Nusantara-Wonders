@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nusantara Wonders - Menjelajahi Kekayaan Sosial Budaya Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container detail-page">
+
+  <button class="back-btn" onclick="goBack()">← Kembali</button>
+
+  <div id="detail"></div>
+
+</div>
+
+<script>
+const id = new URLSearchParams(window.location.search).get('id');
+
+fetch('http://127.0.0.1:8000/api/posts/' + id)
+.then(res=>res.json())
+.then(res=>{
+  const p = res.data;
+
+  // 🔥 TAMBAH VIEW
+  fetch('http://127.0.0.1:8000/api/posts/' + id + '/view', {
+    method: 'POST'
+  });
+
+  document.getElementById('detail').innerHTML = `
+    <div class="card detail-card">
+      <img src="http://127.0.0.1:8000/storage/posts/${p.image}">
+      <div class="card-body">
+        <h1>${p.title}</h1>
+        <p>${p.content}</p>
+      </div>
+    </div>
+  `;
+});
+
+// BACK BUTTON
+function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

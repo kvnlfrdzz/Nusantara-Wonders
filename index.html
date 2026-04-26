@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nusantara Wonders - Menjelajahi Kekayaan Sosial Budaya Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="img/logo.png" class="logo">
+    <span class="brand-text">Nusantara Wonders</span>
+  </div>
+
+  <ul class="menu" id="categories"></ul>
+
+  <div class="search-icon" onclick="openSearch()">
+  <i class="ri-search-line"></i>
+  </div>
+</nav>
+
+<!-- SEARCH OVERLAY -->
+<div id="searchBox" class="search-box">
+  <input type="text" id="searchInput" placeholder="Cari..." />
+  <button onclick="doSearch()">Cari</button>
+  <span onclick="closeSearch()">✖</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="slide active">
+    <img src="img/header 1.jpg">
+    <h1>BROMO</h1>
+  </div>
+
+  <div class="slide">
+    <img src="img/header 2.jpg">
+    <h1>TUGU YOGYAKARTA</h1>
+  </div>
+
+  <div class="slide">
+    <img src="img/header 3.jpg">
+    <h1>CANDI BOROBUDUR</h1>
+  </div>
+
+  <button class="nav prev" onclick="prevSlide()">❮</button>
+  <button class="nav next" onclick="nextSlide()">❯</button>
+
+</section>
+
+<h2 id="searchTitle" class="title" style="display:none;"></h2>
+<button id="backHomeBtn" style="display:none;" onclick="goBack()">← Kembali</button>
+
+<!-- LAYOUT 1 (FEATURED) -->
+<section class="container">
+  <h2 class="title">Rekomendasi Wisata</h2>
+  <div id="featured" class="featured"></div>
+</section>
+
+<!-- LAYOUT 2 -->
+<section class="container">
+  <h2 class="title">Artikel Terbaru</h2>
+  <div id="posts" class="grid"></div>
+</section>
+
+<button id="topBtn">↑</button>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-simple">
+    <div class="footer-left">
+      <div class="footer-brand">Nusantara Wonders</div>
+      <div class="footer-tagline">Menjelajahi Kekayaan Sosial Budaya Indonesia</div>
+    </div>
+
+    <div class="footer-right">
+      © <span id="year"></span> Nusantara Wonders
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

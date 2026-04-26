@@ -1,0 +1,573 @@
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    overflow-x: hidden; /* 🔥 WAJIB */
+  }
+
+  body {
+    margin:0;
+    font-family:sans-serif;
+  }
+
+  /* NAVBAR */
+  .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 40px; /* 🔥 INI KUNCINYA */
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.4s ease;
+  }
+
+/* NAV LEFT */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* LOGO LEBIH GEDE */
+.logo {
+  height: 60px; /* sebelumnya 40px */
+}
+
+/* TEXT BRAND */
+.brand-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0f172a;
+  letter-spacing: 1px;
+}
+
+  .menu {
+    display:flex;
+    gap:20px;
+    list-style:none;
+  }
+
+  /* SEARCH */
+  .search-icon {
+    cursor:pointer;
+  }
+
+  .search-icon i {
+    font-size: 22px;
+    color: #0f172a;
+  }
+
+  .search-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15,15,15,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999; /* 🔥 WAJIB */
+  }
+
+  /* animasi muncul */
+  .search-box.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .search-box input {
+    width: 50%;
+    padding: 20px;
+    font-size: 22px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+  }
+
+  .search-box button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff3d00;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .search-box span {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0}
+    to {opacity:1}
+  }
+
+  /* HERO */
+  .hero {
+    height: calc(100vh - 70px);
+    margin-top: 0;
+    position:relative;
+    overflow:hidden;
+    margin-bottom: 60px;
+    will-change: transform;
+    animation: fadePage 0.6s ease;
+  }
+
+  .slide {
+    position:absolute;
+    width:100%;height:100%;
+    opacity:0;
+    transition:1s;
+  }
+
+  .slide.active {
+    opacity:1;
+  }
+
+  .slide img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .slide.active img {
+    animation: zoom 12s ease-in-out forwards;
+  }
+
+  .slide::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+  }
+
+  @keyframes zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+  }
+
+  .slide h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: clamp(40px, 6vw, 90px);
+    font-weight: bold;
+    letter-spacing: 5px;
+  }
+
+  @keyframes floatText {
+    0% { transform: translate(-50%,-50%) translateY(0); }
+    50% { transform: translate(-50%,-50%) translateY(-15px) scale(1.02); }
+    100% { transform: translate(-50%,-50%) translateY(0); }
+  }
+
+  .slide h1 {
+    opacity: 0;
+  }
+
+  /* class aktif animasi */
+  .slide.active h1.animate {
+    animation: textIn 0.8s ease forwards;
+  }
+
+  /* delay random tiap slide */
+
+  @keyframes textIn {
+    0% {
+      transform: translate(-50%, -80%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  .nav {
+    position:absolute;
+    top:50%;
+    background:white;
+    border:none;
+    font-size:30px;
+    cursor:pointer;
+  }
+
+  .prev { left:20px; }
+  .next { right:20px; }
+
+  /* TITLE */
+  .title {
+    text-align: center;
+    margin: 80px 0 40px; /* 🔥 lebih lega */
+    font-size: clamp(18px, 2.5vw, 28px);
+  }
+
+  /* FEATURED */
+  .featured {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
+  .featured .card img {
+    height:250px;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 🔥 FIX */
+    gap: 25px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+
+  .card h3 {
+    padding: 15px;
+  }
+
+  .card p {
+    padding: 0 15px 15px;
+    opacity: 0.7;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto; /* 🔥 FIX */
+    object-fit: contain;
+  }
+
+  /* FOOTER */
+.footer {
+  background: #0f172a;
+  color: white;
+  padding: 125px 40px;
+  margin-top: 100px;
+}
+
+/* layout footer */
+.footer-simple {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* kiri */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔥 BRAND BESAR */
+.footer-brand {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px; /* jarak ke tagline */
+  letter-spacing: 1px;
+}
+
+/* 🔥 TAGLINE */
+.footer-tagline {
+  font-size: 15px;
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+/* 🔥 COPYRIGHT LEBIH Gede */
+.footer-right {
+  font-size: 16px;
+  opacity: 0.85;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* pastikan tidak clickable */
+.footer p,
+.footer div {
+  cursor: default;
+  pointer-events: none;
+}
+  /* TOP BTN */
+  #topBtn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+
+    width: 60px; /* 🔥 wajib */
+    height: 60px; /* 🔥 wajib */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #0ea5e9;
+    color: white;
+
+    cursor: pointer;
+    display: none;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  }
+
+  #topBtn:hover {
+    background: #0284c7;
+  }
+
+  .detail-page {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 20px;
+  }
+
+  .detail-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  }
+
+  .detail-card img {
+    width: 100%;
+    height: auto; /* 🔥 FIX CROPPING */
+    object-fit: contain;
+  }
+
+  .detail-card .card-body {
+    padding: 30px;
+  }
+
+  .detail-card h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+
+  .detail-card p {
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* BACK BUTTON BAGUS */
+  .back-btn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 999;
+    transition: 0.3s;
+  }
+
+  .back-btn:hover {
+    background: #ff3d00;
+    box-shadow: 0 0 15px #ff3d00;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+
+    background: linear-gradient(to bottom, transparent, #f8fafc);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+
+  .container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 60px 20px; /* 🔥 kasih nafas */
+    animation: fadePage 0.6s ease;
+  }
+
+  .menu li {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .menu li::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #0ea5e9;
+    transition: 0.3s;
+  }
+
+  .menu li:hover::after {
+    width: 100%;
+  }
+
+  .search-box input:focus {
+    border-bottom: 2px solid #0ea5e9;
+  }
+
+  @keyframes fadePage {
+    from { 
+      opacity: 0; 
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .category {
+    display: inline-block;
+    background: #0ea5e9;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin: 15px;
+  }
+
+  #backHomeBtn {
+    margin: 30px 0 0 80px; /* 🔥 kasih jarak kiri */
+    display: inline-block;
+
+    padding: 12px 25px;
+    border: none;
+    background: #0ea5e9;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+
+  #backHomeBtn:hover {
+    background: #0284c7;
+  }
+
+  html, body {
+    background: #f8fafc;
+  }
+
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 15px 0;
+  }
+
+  .category {
+    display: inline-block;
+    background: #0ea5e9;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    margin: 0; /* 🔥 hapus margin lama */
+  }
+
+  body.loading * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.slide h1 {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.slide h1 span {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(var(--x), var(--y)) scale(0.5);
+}
+
+/* 🔥 ANIMASI MASUK */
+.slide.active h1.animate span {
+  animation: letterIn 0.8s ease forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes letterIn {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0, -10px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.footer-brand {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.footer-tagline {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
