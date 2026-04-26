@@ -71,7 +71,7 @@
     posts.forEach(p=>{
       html+=`
       <div class="card" onclick="openDetail(${p.id})">
-        <img src="https://aplikasiku-production.up.railway.app/storage/posts/{p.image}">
+        <img src="https://aplikasiku-production.up.railway.app/storage/posts/${p.image}">
         
         <div class="card-body">
           <div class="categories">
@@ -94,7 +94,7 @@
     posts.forEach(p=>{
       html+=`
       <div class="card" onclick="openDetail(${p.id})">
-        <img src="https://aplikasiku-production.up.railway.app/storage/posts/{p.image}">
+        <img src="https://aplikasiku-production.up.railway.app/storage/posts/${p.image}">
         
         <div class="card-body">
           <div class="categories">
