@@ -41,7 +41,7 @@
   /* FETCH */
   let settings = {};
 
-  fetch('https://railway.app')
+  fetch('https://aplikasiku-production.up.railway.app')
 .then(res => res.json())
 .then(res => {
   settings = res;
@@ -51,7 +51,7 @@
   document.documentElement.style.setProperty('--section-title-size', settings.section_title_size);
 });
 
-  fetch('https://railway.app')
+  fetch('https://aplikasiku-production.up.railway.app')
   .then(res=>res.json())
   .then(res=>{
     allPosts = res.data;
@@ -71,7 +71,7 @@
     posts.forEach(p=>{
       html+=`
       <div class="card" onclick="openDetail(${p.id})">
-        <img src="https://railway.app{p.image}">
+        <img src="https://aplikasiku-production.up.railway.app{p.image}">
         
         <div class="card-body">
           <div class="categories">
@@ -94,7 +94,7 @@
     posts.forEach(p=>{
       html+=`
       <div class="card" onclick="openDetail(${p.id})">
-        <img src="https://railway.app{p.image}">
+        <img src="https://aplikasiku-production.up.railway.app/{p.image}">
         
         <div class="card-body">
           <div class="categories">
