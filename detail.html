@@ -16,31 +16,38 @@
 
 <script>
 const id = new URLSearchParams(window.location.search).get('id');
+const BASE_URL = 'https://aplikasiku-production.up.railway.app';
 
-fetch('https://aplikasiku-production.up.railway.app/api/posts' + id)
-.then(res=>res.json())
-.then(res=>{
+// Tambahin '/' setelah posts supaya jadi /api/posts/ID
+fetch(`${BASE_URL}/api/posts/${id}`)
+.then(res => res.json())
+.then(res => {
   const p = res.data;
 
-  // 🔥 TAMBAH VIEW
-  fetch('https://aplikasiku-production.up.railway.app/api/posts' + id + '/view', {
-    method: 'POST'
-  });
+  // Catat View
+  fetch(`${BASE_URL}/api/posts/${id}/view`, { method: 'POST' });
 
   document.getElementById('detail').innerHTML = `
     <div class="card detail-card">
-      <img src="https://aplikasiku-production.up.railway.app/storage/posts/${p.image}">
+      <img src="${BASE_URL}/storage/posts/${p.image}">
       <div class="card-body">
+        <div class="categories">
+            ${p.categories ? p.categories.map(c => `<span class="category">${c.name}</span>`).join('') : ''}
+        </div>
         <h1>${p.title}</h1>
-        <p>${p.content}</p>
+        <div class="content">
+            ${p.content}
+        </div>
       </div>
-    </div>
-  `;
+    </div>`;
+})
+.catch(err => {
+    document.getElementById('detail').innerHTML = '<p>Gagal memuat data...</p>';
+    console.error(err);
 });
 
-// BACK BUTTON
 function goBack() {
-  window.location.href = "index.html";
+  window.history.back();
 }
 </script>
 
